@@ -72,6 +72,9 @@ def callback():
         )
 
     return 'OK'
+@app.route("/", methods=['GET'])
+def show():
+    return "hello world"
 
 
 if __name__ == "__main__":
