@@ -18,7 +18,7 @@ from argparse import ArgumentParser
 
 from flask import Flask, request, abort
 from linebot import (
-    LineBotApi, WebhookHandler, WebhookParser
+    LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -30,7 +30,6 @@ from linebot.models import (
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
-
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 if channel_secret is None:
@@ -41,7 +40,7 @@ if channel_access_token is None:
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
-parser = WebhookParser(channel_secret)
+handler = WebhookHandler(channel_secret)
 
 
 @app.route("/callback", methods=['POST'])
@@ -78,4 +77,4 @@ if __name__ == "__main__":
     arg_parser.add_argument('-d', '--debug', default=False, help='debug')
     options = arg_parser.parse_args()
 
-    app.run(debug=options.debug, port=options.port)
+app.run(debug=options.debug, port=options.port)
