@@ -15,3 +15,4 @@ werkzeug=0.11.9=py35_0
 wheel=0.29.0=py35_0
 xz=5.0.5=1
 zlib=1.2.8=0
+line-bot-sdk
